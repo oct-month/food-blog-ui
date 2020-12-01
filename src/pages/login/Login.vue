@@ -1,11 +1,11 @@
 <template>
     <div>
-        login 页面
+        Login 页面
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Login'
+  name: "Login"
 }
 </script>
