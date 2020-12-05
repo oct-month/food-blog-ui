@@ -68,7 +68,15 @@
 </style>
 
 <script>
+import Axios from 'axios'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  methods: {
+    getAllBlogs() {
+    }
+  },
+  mounted() {
+  }
 }
 </script>

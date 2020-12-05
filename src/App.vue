@@ -12,7 +12,7 @@
               </b-row>
               <b-row>
                 <b-col>
-                  <span class="mr-auto">用户名</span>
+                  <span class="mr-auto">{{ this.$store.getters.userName }}</span>
                 </b-col>
               </b-row>
             </b-container>
@@ -48,7 +48,7 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
             <template #button-content>
-              <em>User</em>
+              <em>{{ this.$store.getters.userName }}</em>
             </template>
             <b-dropdown-item v-b-toggle.user-bar>Profile</b-dropdown-item>
             <b-dropdown-item href="#">Log Out</b-dropdown-item>
@@ -116,6 +116,10 @@
   color: #2c3e50;
 }
 
+#user-bar {
+  text-align: center;
+}
+
 #nav {
   padding: 30px;
 }
@@ -139,29 +143,39 @@
 <script>
 import Axios from 'axios'
 Axios.defaults.withCredentials = true
-import getUrlParams from '@/util/getUrlParams.js'
 
 export default {
   name: "App",
+  methods: {
+    checkLogin() {
+      var that = this
+      Axios.get(process.env.VUE_APP_URL + '/api/login/islogin')
+        .then((response) => {
+          if (response.data.success === true)
+          {
+            Axios.get(process.env.VUE_APP_URL + '/api/login/username')
+              .then((response) => {
+                that.$store.commit({
+                  type: 'setUserName',
+                  userName: response.data.userName
+                })
+              })
+              .catch((error) => {
+                console.log(error)
+              })
+          }
+          else
+          {
+            location = '/login'
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  },
   mounted() {
-    var that = this
-    Axios.get(process.env.VUE_APP_URL + '/api/login/islogin')
-      .then((response) => {
-        if (response.data.success != true)
-        {
-          location = '/login'
-        }
-        else
-        {
-          that.$store.commit({
-            type: 'setUserName',
-            userName: getUrlParams('userName')
-          })
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    this.checkLogin()
   }
 };
 </script>

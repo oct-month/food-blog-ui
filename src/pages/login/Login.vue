@@ -52,6 +52,7 @@
 <script>
 import Axios from "axios";
 Axios.defaults.withCredentials = true
+import getUrlParams from '@/util/getUrlParams.js'
 
 export default {
   name: "Login",
@@ -71,13 +72,16 @@ export default {
       Axios.post(process.env.VUE_APP_URL + "/api/login/dologin", this.form)
         .then((response) => {
           if (response.data.success === true)
-            location = '/?userName=' + that.form.userName
+            location = '/'
         })
         .catch((error) => {
           console.log(error);
         });
     },
   },
+  mounted() {
+    this.form.userName = getUrlParams('userName') || ''
+  }
 };
 </script>
 
