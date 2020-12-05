@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <b-card-group columns>
+    <b-card-group columns v-for="blog in $store.getters.allBlogs" :key="blog.id">
       <b-card
-        title="鸡蛋"
-        sub-title="发条绅士"
-        img-src="~@/img/slide-2.jpg"
+        :title="blog.title"
+        :sub-title="blog.userName"
+        :img-src="blog.img"
         img-alt="Image"
         img-top
         >
         <b-card-text>
-          荷包蛋，儿时的美味。荷包蛋，儿时的美味。荷包蛋，儿时的美味。荷包蛋，儿时的美味。荷包蛋，儿时的美味。
+          {{ blog.content }}
         </b-card-text>
-        <b-card-text class="small text-muted">2020-09-08 20:56</b-card-text>
+        <b-card-text class="small text-muted">{{ blog.publishTime }}</b-card-text>
         <template #footer>
           <b-container>
             <b-row align-v="center" no-gutters>
@@ -21,7 +21,7 @@
                 </a>
               </b-col>
               <b-col>
-                <span class="num" style="font-size: 150%;">1</span>
+                <span class="num" style="font-size: 150%;">{{ blog.likes }}</span>
               </b-col>
             </b-row>
             <b-row align-v="center" align-h="start">
@@ -37,26 +37,14 @@
               <b-collapse id="collapse-1" class="mt-2">
                 <b-card>
                   <b-list-group>
-                    <b-list-group-item>Cras justo odio</b-list-group-item>
-                    <b-list-group-item>Dapibus ac facilisis in</b-list-group-item>
-                    <b-list-group-item>Morbi leo risus</b-list-group-item>
-                    <b-list-group-item>Porta ac consectetur ac</b-list-group-item>
-                    <b-list-group-item>Vestibulum at eros</b-list-group-item>
+                    <b-list-group-item v-for="comment in blog.comments" :key="comment.id">
+                      {{ comment.content }}
+                    </b-list-group-item>
                   </b-list-group>
                 </b-card>
               </b-collapse>
             </b-row>
           </b-container>
-        </template>
-      </b-card>
-
-      <b-card img-src="https://picsum.photos/400/200/?image=41" img-alt="Image" img-top>
-        <b-card-text>
-          This is a wider card with supporting text below as a natural lead-in to additional content.
-          This card has even longer content than the first.
-        </b-card-text>
-        <template #footer>
-          <small class="text-muted">Footer Text</small>
         </template>
       </b-card>
     </b-card-group>
@@ -74,11 +62,11 @@ Axios.defaults.withCredentials = true
 export default {
   name: 'Home',
   methods: {
-    getAllBlogs() {
+    getAllBlogs() {   // 拿到所有的blog
       var that = this
       Axios.get(process.env.VUE_APP_URL + '/api/blog/blogs')
         .then((response) => {
-          response.data.blogs.forEach((blog) => {
+          response.data.blogs.forEach((blog) => { // 根据blog.id拿到blog对应的comment
             Axios.get(process.env.VUE_APP_URL + '/api/comment/comments/' + blog.id)
               .then((response) => {
                 blog.comments = response.data.comments

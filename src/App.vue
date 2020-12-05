@@ -147,7 +147,7 @@ Axios.defaults.withCredentials = true
 export default {
   name: "App",
   methods: {
-    checkLogin() {
+    checkLogin() {  // 检查登陆
       var that = this
       Axios.get(process.env.VUE_APP_URL + '/api/login/islogin')
         .then((response) => {
