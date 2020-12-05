@@ -21,7 +21,7 @@ export default new Vuex.Store({
       state.userName = payload.userName
     },
     setBlogs(state, payload) {      // 设置blogs
-      state.blogs = payload.blogs
+      state.blogs = {...payload.blogs}
     },
     addBlogs(state, payload) {      // 增加blogs
       state.blogs = state.blogs.concat(payload.blogs)
