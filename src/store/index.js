@@ -6,16 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {        // 状态
     userName: '',   // 用户名
-    blogs: [{
-      comments: [],
-      content: '',
-      id: 0,
-      img: '',
-      likes: 0,
-      publishTime: '',
-      title: '',
-      userName: ''
-    }]       // 所有博客
+    blogs: []       // 所有博客
   },
   getters: {
     userName(state) {
