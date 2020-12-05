@@ -138,6 +138,7 @@
 
 <script>
 import Axios from 'axios'
+Axios.defaults.withCredentials = true
 import getUrlParams from '@/util/getUrlParams.js'
 
 export default {
