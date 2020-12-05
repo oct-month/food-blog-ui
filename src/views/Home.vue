@@ -69,14 +69,36 @@
 
 <script>
 import Axios from 'axios'
+Axios.defaults.withCredentials = true
 
 export default {
   name: 'Home',
   methods: {
     getAllBlogs() {
+      var that = this
+      Axios.get(process.env.VUE_APP_URL + '/api/blog/blogs')
+        .then((response) => {
+          that.$store.commit({
+            type: 'setBlogs',
+            blogs: response.data.blogs
+          })
+          that.$store.getters.allBlogs.forEach((blog, index, blogs) => {
+            Axios.get(process.env.VUE_APP_URL + '/api/comment/comments/' + blog.id)
+              .then((response) => {
+                Vue.set(blog, 'comments', response.data.comments)
+              })
+              .catch((error) => {
+                console.log(error)
+              })
+          });
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   },
   mounted() {
+    this.getAllBlogs()
   }
 }
 </script>

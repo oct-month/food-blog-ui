@@ -12,7 +12,7 @@
               </b-row>
               <b-row>
                 <b-col>
-                  <span class="mr-auto">{{ this.$store.getters.userName }}</span>
+                  <span class="mr-auto">{{ $store.getters.userName }}</span>
                 </b-col>
               </b-row>
             </b-container>
@@ -48,7 +48,7 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
             <template #button-content>
-              <em>{{ this.$store.getters.userName }}</em>
+              <em>{{ $store.getters.userName }}</em>
             </template>
             <b-dropdown-item v-b-toggle.user-bar>Profile</b-dropdown-item>
             <b-dropdown-item href="#">Log Out</b-dropdown-item>
