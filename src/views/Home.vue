@@ -66,20 +66,21 @@ export default {
       var that = this
       Axios.get(process.env.VUE_APP_URL + '/api/blog/blogs')
         .then((response) => {
-          response.data.blogs.forEach((blog) => { // 根据blog.id拿到blog对应的comment
+          that.$store.commit({
+            type: 'setBlogs',
+            blogs: response.data.blogs
+          })
+
+          that.$store.getters.allBlogs.forEach((blog) => { // 根据blog.id拿到blog对应的comment
             Axios.get(process.env.VUE_APP_URL + '/api/comment/comments/' + blog.id)
               .then((res) => {
-                let comments = JSON.stringify(res.data.comments)
-                blog.comments = JSON.parse(comments)
+                // Vue.set(blog, 'comments', res.data.comments)
+                blog.comments = res.data.comments
               })
               .catch((error) => {
                 console.log(error)
               })
           });
-          that.$store.commit({
-            type: 'setBlogs',
-            blogs: response.data.blogs
-          })
         })
         .catch((error) => {
           console.log(error)
