@@ -78,11 +78,7 @@ export default {
       var that = this
       Axios.get(process.env.VUE_APP_URL + '/api/blog/blogs')
         .then((response) => {
-          that.$store.commit({
-            type: 'setBlogs',
-            blogs: response.data.blogs
-          })
-          that.$store.getters.allBlogs.forEach((blog, index, blogs) => {
+          response.data.blogs.forEach((blog) => {
             Axios.get(process.env.VUE_APP_URL + '/api/comment/comments/' + blog.id)
               .then((response) => {
                 Vue.set(blog, 'comments', response.data.comments)
@@ -91,6 +87,10 @@ export default {
                 console.log(error)
               })
           });
+          that.$store.commit({
+            type: 'setBlogs',
+            blogs: response.data.blogs
+          })
         })
         .catch((error) => {
           console.log(error)
