@@ -137,7 +137,31 @@
 </style>
 
 <script>
+import Axios from 'axios'
+import getUrlParams from '@/util/getUrlParams.js'
+
 export default {
   name: "App",
+  mounted() {
+    var that = this
+    Axios.get(process.env.VUE_APP_URL + '/api/login/islogin')
+      .then((response) => {
+        console.log(response.data.success)
+        if (response.data.success != true)
+        {
+          // location = '/login'
+        }
+        else
+        {
+          that.$store.commit({
+            type: 'setUserName',
+            userName: getUrlParams('userName')
+          })
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 };
 </script>

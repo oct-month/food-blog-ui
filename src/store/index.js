@@ -4,12 +4,21 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
+  state: {        // 状态
+    userName: ''
   },
-  mutations: {
+  getters: {
+    userName(state) {
+      return state.userName
+    }
   },
-  actions: {
+  mutations: {  // 只接受同步更改
+    setUserName(state, payload) {
+      state.userName = payload.userName
+    }
   },
-  modules: {
+  actions: {  // 可以进行异步操作
+  },
+  modules: {  // 模块
   }
 })

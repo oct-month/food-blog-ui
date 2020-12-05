@@ -74,9 +74,11 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
+      var that = this
       Axios.post(process.env.VUE_APP_URL + "/api/login/register", this.form)
         .then((response) => {
-          console.log(response.data);
+          if (response.data.success === true)
+            location = '/login?userName=' + that.form.userName
         })
         .catch((error) => {
           console.log(error);

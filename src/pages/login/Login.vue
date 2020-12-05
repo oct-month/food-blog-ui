@@ -66,9 +66,12 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault(); // 预定义的默认操作
+      var that = this
       Axios.post(process.env.VUE_APP_URL + "/api/login/dologin", this.form)
         .then((response) => {
-          console.log(response.data);
+          console.log(document.cookie)
+          // if (response.data.success === true)
+          //   location = '/?userName=' + that.form.userName
         })
         .catch((error) => {
           console.log(error);
