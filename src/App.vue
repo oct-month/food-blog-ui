@@ -147,10 +147,9 @@ export default {
     var that = this
     Axios.get(process.env.VUE_APP_URL + '/api/login/islogin')
       .then((response) => {
-        console.log(response.data.success)
         if (response.data.success != true)
         {
-          // location = '/login'
+          location = '/login'
         }
         else
         {

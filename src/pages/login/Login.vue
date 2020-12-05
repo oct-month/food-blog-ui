@@ -70,9 +70,8 @@ export default {
       var that = this
       Axios.post(process.env.VUE_APP_URL + "/api/login/dologin", this.form)
         .then((response) => {
-          console.log(document.cookie)
-          // if (response.data.success === true)
-          //   location = '/?userName=' + that.form.userName
+          if (response.data.success === true)
+            location = '/?userName=' + that.form.userName
         })
         .catch((error) => {
           console.log(error);
