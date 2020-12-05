@@ -16,7 +16,7 @@
           <b-container>
             <b-row align-v="center" no-gutters>
               <b-col cols="1" align-self="start">
-                <a href="javascript:void(0);">
+                <a href="javascript:void(0);" v-on:click.once="addlikes(blog.id)">
                   <b-img src="~@/img/like.svg"  height="30sp"></b-img>
                 </a>
               </b-col>
@@ -74,7 +74,6 @@ export default {
           that.$store.getters.allBlogs.forEach((blog) => { // 根据blog.id拿到blog对应的comment
             Axios.get(process.env.VUE_APP_URL + '/api/comment/comments/' + blog.id)
               .then((res) => {
-                // Vue.set(blog, 'comments', res.data.comments)
                 blog.comments = res.data.comments
               })
               .catch((error) => {
@@ -85,6 +84,9 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    addlikes(blogId) {   // 点赞
+      console.log(blogId)
     }
   },
   mounted() {
