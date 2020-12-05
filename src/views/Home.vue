@@ -37,10 +37,10 @@
               <b-collapse id="collapse-1" class="mt-2">
                 <b-card>
                   <b-list-group>
-                    <b-list-group-item v-for="comment in blog.comments" :key="comment.id">
+                    <!-- <b-list-group-item v-for="comment in blog.comments" :key="comment.id">
                       {{ comment.content }}test
-                    </b-list-group-item>
-                    <b-list-group-item>test2</b-list-group-item>
+                    </b-list-group-item> -->
+                    <b-list-group-item>test2{{ blog.comments }}</b-list-group-item>
                   </b-list-group>
                 </b-card>
               </b-collapse>
