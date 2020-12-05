@@ -40,7 +40,9 @@
                     <!-- <b-list-group-item v-for="comment in blog.comments" :key="comment.id">
                       {{ comment.content }}test
                     </b-list-group-item> -->
-                    <b-list-group-item>test2{{ blog.comments }}</b-list-group-item>
+                    <b-list-group-item>{{ blog }}</b-list-group-item>
+                    <b-list-group-item>{{ blog.comments[0].content }}</b-list-group-item>
+                    <b-list-group-item>{{ blog.comments[1].content }}</b-list-group-item>
                   </b-list-group>
                 </b-card>
               </b-collapse>
