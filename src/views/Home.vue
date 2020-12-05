@@ -81,7 +81,7 @@ export default {
           response.data.blogs.forEach((blog) => {
             Axios.get(process.env.VUE_APP_URL + '/api/comment/comments/' + blog.id)
               .then((response) => {
-                Vue.set(blog, 'comments', response.data.comments)
+                blog.comments = response.data.comments
               })
               .catch((error) => {
                 console.log(error)
