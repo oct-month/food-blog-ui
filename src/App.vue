@@ -25,7 +25,7 @@
         <b-list-group-item variant="primary" :to="'/home?userName=' + $store.getters.userName" class="d-flex align-items-center">
           我的主页
         </b-list-group-item>
-        <b-list-group-item button variant="success" :to="'/write'" class="d-flex align-items-center">
+        <b-list-group-item variant="success" to="/write" class="d-flex align-items-center">
           + 发布博客
         </b-list-group-item>
       </b-list-group>
@@ -36,7 +36,7 @@
       <div class="d-block text-center">
         <h3>下线成功</h3>
       </div>
-      <b-button class="mt-3" variant="success" block @click="$bvModal.hide('bv-modal-logout'); location='/login'">OK</b-button>
+      <b-button class="mt-3" variant="success" block @click="$bvModal.hide('bv-modal-logout'); location='/login';">OK</b-button>
     </b-modal>
 
     <!-- 导航栏 -->

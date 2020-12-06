@@ -41,8 +41,9 @@
           placeholder="Choose a img or drop it here..."
           drop-placeholder="Drop img here..."
         ></b-form-file>
-        <b-img-lazy :src="newBlog.img"></b-img-lazy>
       </b-form-group>
+
+      <b-img-lazy :src="newBlog.img"></b-img-lazy>
 
       <b-button type="submit" variant="primary">Submit</b-button>
     </b-form>
