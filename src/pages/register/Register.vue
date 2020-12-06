@@ -59,6 +59,7 @@
 <script>
 import Axios from "axios";
 Axios.defaults.withCredentials = true
+import errorHandle from '@/util/errorHandle.js'
 
 export default {
   name: "Register",
@@ -81,9 +82,7 @@ export default {
           if (response.data.success === true)
             location = '/login?userName=' + that.form.userName
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch(errorHandle);
     },
   },
 };

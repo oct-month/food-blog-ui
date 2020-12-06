@@ -26,9 +26,9 @@
             </b-row>
             <b-row align-v="center" align-h="start">
                 <b-input-group class="mt-3">
-                  <b-form-input placeholder="发条友善的评论"></b-form-input>
+                  <b-form-input placeholder="发条友善的评论" v-bind="newComments[blog.id]"></b-form-input>
                   <b-input-group-append>
-                    <b-button variant="outline-secondary">发表评论</b-button>
+                    <b-button variant="outline-secondary" v-on:click.once="addComment(blog.id)">发表评论</b-button>
                   </b-input-group-append>
                 </b-input-group>
             </b-row>
@@ -58,9 +58,15 @@
 <script>
 import Axios from 'axios'
 Axios.defaults.withCredentials = true
+import errorHandle from '@/util/errorHandle.js'
 
 export default {
   name: 'Home',
+  data() {
+    return {
+      newComments: {}
+    }
+  },
   methods: {
     getAllBlogs() {   // 拿到所有的blog
       var that = this
@@ -70,23 +76,50 @@ export default {
             type: 'setBlogs',
             blogs: response.data.blogs
           })
-
-          that.$store.getters.allBlogs.forEach((blog) => { // 根据blog.id拿到blog对应的comment
+          // 根据blog.id拿到blog对应的comment
+          that.$store.getters.allBlogs.forEach((blog) => {
             Axios.get(process.env.VUE_APP_URL + '/api/comment/comments/' + blog.id)
               .then((res) => {
-                blog.comments = res.data.comments
+                that.$store.commit({
+                  type: 'setComments',
+                  blogId: blog.id,
+                  comments: res.data.comments
+                })
               })
-              .catch((error) => {
-                console.log(error)
-              })
+              .catch(errorHandle)
           });
         })
-        .catch((error) => {
-          console.log(error)
-        })
+        .catch(errorHandle)
     },
     addlikes(blogId) {   // 点赞
-      console.log(blogId)
+      var that = this
+      Axios.put(process.env.VUE_APP_URL + '/api/blog/add/likes/' + blogId)
+        .then((response) => {
+          if (response.data.success === true)
+          {
+            that.$store.commit({
+              type: 'getLikes',
+              blogId: blogId
+            })
+          }
+        })
+        .catch(errorHandle)
+    },
+    addComment(blogId) {  // 增加评论
+      var that = this
+      Axios.post(process.env.VUE_APP_URL + '/api/comment/add', {
+        content: that.newComments[blogId],
+        blogId: blogId
+      })
+      .then((response) => {
+        if (response.data.success === true) {
+          that.$store.commit({
+            type: 'addComments',
+            blogId: blogId,
+            comments: response.data.comments
+          })
+        }
+      })
     }
   },
   mounted() {

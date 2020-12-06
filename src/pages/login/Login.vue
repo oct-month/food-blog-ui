@@ -53,6 +53,7 @@
 import Axios from "axios";
 Axios.defaults.withCredentials = true
 import getUrlParams from '@/util/getUrlParams.js'
+import errorHandle from '@/util/errorHandle.js'
 
 export default {
   name: "Login",
@@ -74,9 +75,7 @@ export default {
           if (response.data.success === true)
             location = '/'
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch(errorHandle);
     },
   },
   mounted() {

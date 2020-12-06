@@ -143,6 +143,7 @@
 <script>
 import Axios from 'axios'
 Axios.defaults.withCredentials = true
+import errorHandle from '@/util/errorHandle.js'
 
 export default {
   name: "App",
@@ -160,18 +161,14 @@ export default {
                   userName: response.data.userName
                 })
               })
-              .catch((error) => {
-                console.log(error)
-              })
+              .catch(errorHandle)
           }
           else
           {
             location = '/login'
           }
         })
-        .catch((error) => {
-          console.log(error)
-        })
+        .catch(errorHandle)
     }
   },
   mounted() {

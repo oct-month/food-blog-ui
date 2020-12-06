@@ -23,8 +23,36 @@ export default new Vuex.Store({
     setBlogs(state, payload) {      // 设置blogs
       state.blogs = payload.blogs
     },
-    addBlogs(state, payload) {      // 增加blogs
-      state.blogs = state.blogs.concat(payload.blogs)
+    addBlogs(state, payload) {      // 在blogs开头增加blog
+      payload.blogs.forEach((blog) => {
+        state.blogs.unshift(blog)
+      })
+    },
+    setComments(state, payload) {   // 设置blog的comments
+      state.blogs.forEach((blog) => {
+        if (blog.id === payload.blogId)
+        {
+          blog.comments = payload.comments
+        }
+      })
+    },
+    addComments(state, payload) {   // 增加blog的comments
+      state.blog.forEach((blog) => {
+        if (blog.id === payload.blogId)
+        {
+          payload.comments.forEach((comment) => {
+            blog.comments.unshift(comment)
+          })
+        }
+      })
+    },
+    getLikes(state, payload) {    // 点赞
+      state.blog.forEach((blog) => {
+        if (blog.id === payload.blogId)
+        {
+          blog.likes ++
+        }
+      })
     }
   },
   actions: {  // 可以进行异步操作
