@@ -83,6 +83,7 @@ export default {
       var that = this
       Axios.get(process.env.VUE_APP_URL + '/api/blog/blogs')
         .then((response) => {
+          that.loading = false
           if (response.data.success === true)
           {
             that.$store.commit({
@@ -149,7 +150,6 @@ export default {
         flag: false
       })
     }
-    this.loading = false
   }
 }
 </script>
