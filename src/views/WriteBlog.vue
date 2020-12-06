@@ -84,7 +84,12 @@ export default {
               flag: true
             })
             that.loading = false
-            location = '/home?userName=' + that.$store.getters.userName
+            that.$router.push({
+              name: 'Home',
+              params: {
+                userName: that.$store.getters.userName
+              }
+            })
           }
         })
     },
