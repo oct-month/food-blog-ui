@@ -1,7 +1,11 @@
 <template>
   <div class="write-blog">
     <b-form @submit="onSubmit" v-if="show">
-      <b-form-group id="input-group-blog-title" label="博客主题：" label-for="input-blog-title">
+      <b-form-group
+        id="input-group-blog-title"
+        label="博客主题："
+        label-for="input-blog-title"
+      >
         <b-form-input
           id="input-blog-title"
           v-model="newBlog.title"
@@ -10,16 +14,24 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-blog-content" label="博客内容：" label-for="input-blog-content">
-        <b-form-input
+      <b-form-group
+        id="input-group-blog-content"
+        label="博客内容："
+        label-for="input-blog-content"
+      >
+        <b-form-textarea
           id="input-blog-content"
           v-model="newBlog.content"
           required
           placeholder="Enter blog content"
-        ></b-form-input>
+        ></b-form-textarea>
       </b-form-group>
 
-      <b-form-group id="input-group-blog-img" label="博客图片：" label-for="input-blog-img">
+      <b-form-group
+        id="input-group-blog-img"
+        label="博客图片："
+        label-for="input-blog-img"
+      >
         <b-form-file
           id="input-blog-img"
           v-model="imgFile"
@@ -28,8 +40,8 @@
           required
           placeholder="Choose a img or drop it here..."
           drop-placeholder="Drop img here..."
-          ></b-form-file>
-          <b-img-lazy :src="newBlog.img"></b-img-lazy>
+        ></b-form-file>
+        <b-img-lazy :src="newBlog.img"></b-img-lazy>
       </b-form-group>
 
       <b-button type="submit" variant="primary">Submit</b-button>
@@ -38,6 +50,8 @@
 </template>
 
 <script>
+import errorHandle from "@/util/errorHandle.js";
+
 export default {
   name: "writeBlog",
   data() {
@@ -45,7 +59,7 @@ export default {
       newBlog: {
         title: "",
         content: "",
-        img: ''
+        img: "",
       },
       imgFile: null,
       show: true,
@@ -56,13 +70,15 @@ export default {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
     },
-    uploadImg() {   // 读取图片，解析成base64
-      var reader = new FileReader()
-      reader.readAsDataURL(this.imgFile)
+    uploadImg() {
+      // 读取图片，解析成base64
+      var reader = new FileReader();
+      reader.readAsDataURL(this.imgFile);
       reader.onload = (e) => {
-        this.newBlog.img = e.target.result
-      }
-    }
+        this.newBlog.img = e.target.result;
+      };
+      reader.onerror = errorHandle;
+    },
   },
 };
 </script>
