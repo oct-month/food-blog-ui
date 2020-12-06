@@ -71,7 +71,7 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       var that = this
-      Axios.post(process.env.VUE_APP_URL + '/api/blog/add/blog')
+      Axios.post(process.env.VUE_APP_URL + '/api/blog/add/blog', this.newBlog)
         .then((response) => {
           if (response.data.success === true)
           {
