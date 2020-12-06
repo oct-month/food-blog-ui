@@ -1,5 +1,14 @@
 <template>
   <div class="home">
+    <div class="text-center" v-if="loading">
+      <b-spinner label="Spinning"></b-spinner>
+      <b-spinner type="grow" label="Spinning"></b-spinner>
+      <b-spinner variant="primary" label="Spinning"></b-spinner>
+      <b-spinner variant="primary" type="grow" label="Spinning"></b-spinner>
+      <b-spinner variant="success" label="Spinning"></b-spinner>
+      <b-spinner variant="success" type="grow" label="Spinning"></b-spinner>
+    </div>
+
     <b-card-group columns>
       <b-card v-for="blog in userBlogs" :key="blog.id"
         :title="blog.title"
@@ -74,6 +83,7 @@ export default {
     return {
       currentUserName: getUrlparams("userName"),
       newComments: {},
+      loading: false
     };
   },
   computed: {
@@ -82,6 +92,35 @@ export default {
     },
   },
   methods: {
+    getAllBlogs() {   // 拿到所有的blog
+      var that = this
+      Axios.get(process.env.VUE_APP_URL + '/api/blog/blogs')
+        .then((response) => {
+          if (response.data.success === true)
+          {
+            that.$store.commit({
+              type: 'setBlogs',
+              blogs: response.data.blogs
+            })
+          }
+          // 根据blog.id拿到blog对应的comment
+          that.$store.getters.allBlogs.forEach((blog) => {
+            Axios.get(process.env.VUE_APP_URL + '/api/comment/comments/' + blog.id)
+              .then((res) => {
+                if (res.data.success === true)
+                {
+                  that.$store.commit({
+                    type: 'setComments',
+                    blogId: blog.id,
+                    comments: res.data.comments
+                  })
+                }
+              })
+              .catch(errorHandle)
+          });
+        })
+        .catch(errorHandle)
+    },
     addlikes(blogId) {
       // 点赞
       var that = this;
@@ -113,6 +152,14 @@ export default {
       });
     },
   },
+  mounted() {
+    this.loading = true
+    if (this.$store.getters.getBlogFlag === true)
+    {
+      this.getAllBlogs()
+    }
+    this.loading = false
+  }
 };
 </script>
 

@@ -75,6 +75,10 @@ export default {
         .then((response) => {
           if (response.data.success === true)
           {
+            that.$store.commit({
+              type: 'setBlogFlag',
+              flag: true
+            })
             location = '/home?userName=' + that.$store.getters.userName
           }
         })

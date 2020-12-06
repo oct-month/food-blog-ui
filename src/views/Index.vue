@@ -1,5 +1,15 @@
 <template>
   <div class="index">
+
+    <div class="text-center" v-if="loading">
+      <b-spinner label="Spinning"></b-spinner>
+      <b-spinner type="grow" label="Spinning"></b-spinner>
+      <b-spinner variant="primary" label="Spinning"></b-spinner>
+      <b-spinner variant="primary" type="grow" label="Spinning"></b-spinner>
+      <b-spinner variant="success" label="Spinning"></b-spinner>
+      <b-spinner variant="success" type="grow" label="Spinning"></b-spinner>
+    </div>
+
     <b-card-group columns>
       <b-card v-for="blog in $store.getters.allBlogs" :key="blog.id"
         :title="blog.title"
@@ -64,7 +74,8 @@ export default {
   name: 'Index',
   data() {
     return {
-      newComments: {}
+      newComments: {},
+      loading: true
     }
   },
   methods: {
@@ -129,7 +140,12 @@ export default {
     }
   },
   mounted() {
-    this.getAllBlogs()
+    this.loading = true
+    if (this.$store.getters.getBlogFlag === true)
+    {
+      this.getAllBlogs()
+    }
+    this.loading = false
   }
 }
 </script>

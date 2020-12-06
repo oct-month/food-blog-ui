@@ -6,11 +6,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {        // 状态
     userName: '',   // 用户名
-    blogs: []       // 所有博客
+    blogs: [],       // 所有博客
+    getBlogFlag: true // 是否拉取blogs
   },
   getters: {
     userName(state) {
       return state.userName
+    },
+    getBlogFlag(state) {
+      return state.getBlogFlag
     },
     allBlogs(state) {
       return state.blogs
@@ -29,6 +33,9 @@ export default new Vuex.Store({
   mutations: {  // 只接受同步更改
     setUserName(state, payload) {   // 设置用户名
       state.userName = payload.userName
+    },
+    setBlogFlag(state, payload) {
+      state.getBlogFlag = payload.flag
     },
     setBlogs(state, payload) {      // 设置blogs
       state.blogs = payload.blogs

@@ -7,7 +7,7 @@
             <b-container fluid>
               <b-row>
                 <b-col>
-                  <b-avatar size="4rem" href="#" src="https://placekitten.com/300/300" class="mr-auto"></b-avatar>
+                  <b-avatar size="4rem" href="#" src="~@/img/girl.jpg" class="mr-auto"></b-avatar>
                 </b-col>
               </b-row>
               <b-row>
