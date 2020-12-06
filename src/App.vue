@@ -110,8 +110,10 @@
     </b-container>
 
     <footer class="bd-footer text-muted">
-      <b-jumbotron bg-variant="info" text-variant="dark" style="margin-bottom: 0em;">
-        <template #header>美食博客</template>
+      <b-jumbotron text-variant="dark" style="margin-bottom: 0em;">
+        <template #header>
+          美食博客
+        </template>
         <template #lead>
           Food is everything.
         </template>
@@ -119,7 +121,7 @@
         <p>
           任何一种爱，都不比对美食的热爱真切。
         </p>
-        <b-link to="/about"></b-link>
+        <b-link to="/about">关于我</b-link>
       </b-jumbotron>
     </footer>
   </div>
