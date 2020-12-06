@@ -14,6 +14,16 @@ export default new Vuex.Store({
     },
     allBlogs(state) {
       return state.blogs
+    },
+    userBlogs: (state) => (userName) => { // 通过返回一个函数以实现getters传参
+      var ublogs = []
+      state.blogs.forEach((blog) => {
+        if (blog.userName === userName)
+        {
+          ublogs.push(blog)
+        }
+      })
+      return ublogs
     }
   },
   mutations: {  // 只接受同步更改
