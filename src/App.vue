@@ -112,16 +112,17 @@
     <footer class="bd-footer text-muted">
       <b-jumbotron text-variant="dark" style="margin-bottom: 0em;">
         <template #header>
-          美食博客
+          Food Blog
         </template>
         <template #lead>
           Food is everything.
         </template>
         <hr class="my-4">
         <p>
-          任何一种爱，都不比对美食的热爱真切。
+          Any kind of love is not more real than the love of food.
         </p>
-        <b-link to="/about">关于我</b-link>
+        <b-link to="/about">About me</b-link>
+        <p class="text-center">© 2020-2020</p>
       </b-jumbotron>
     </footer>
   </div>
