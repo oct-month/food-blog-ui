@@ -16,12 +16,9 @@
         }}</b-card-text>
         <template #footer>
           <b-container>
-            <b-row align-v="center" no-gutters>
+            <b-row align-v="center">
               <b-col cols="1" align-self="start">
-                <a
-                  href="javascript:void(0);"
-                  v-on:click.once="addlikes(blog.id)"
-                >
+                <a href="javascript:void(0);" v-on:click.once="addlikes(blog.id)">
                   <b-img src="~@/img/like.svg" height="30sp"></b-img>
                 </a>
               </b-col>
