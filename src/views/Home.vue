@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <b-card-group columns v-for="blog in userBlogs" :key="blog.id">
-      <b-card
+    <b-card-group columns>
+      <b-card v-for="blog in userBlogs" :key="blog.id"
         :title="blog.title"
         :sub-title="blog.userName"
         :img-src="blog.img"

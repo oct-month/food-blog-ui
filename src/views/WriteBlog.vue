@@ -1,6 +1,6 @@
 <template>
   <div class="write-blog">
-    <b-container>
+    <b-container fluid>
       <b-form @submit="onSubmit" v-if="show">
         <b-form-group
           id="input-group-blog-title"
@@ -43,7 +43,7 @@
           ></b-form-file>
           <b-img-lazy :src="newBlog.img"></b-img-lazy>
         </b-form-group>
-        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-button type="submit" variant="primary">发布博客</b-button>
       </b-form>
     </b-container>
   </div>

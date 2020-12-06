@@ -1,7 +1,7 @@
 <template>
   <div class="index">
-    <b-card-group columns v-for="blog in $store.getters.allBlogs" :key="blog.id">
-      <b-card
+    <b-card-group columns>
+      <b-card v-for="blog in $store.getters.allBlogs" :key="blog.id"
         :title="blog.title"
         :sub-title="blog.userName"
         :img-src="blog.img"
