@@ -1,50 +1,52 @@
 <template>
   <div class="write-blog row align-items-center justify-content-center">
     <b-container>
-      <b-form @submit="onSubmit" v-if="show">
-        <b-form-group
-          id="input-group-blog-title"
-          label="博客主题："
-          label-for="input-blog-title"
-        >
-          <b-form-input
-            id="input-blog-title"
-            v-model="newBlog.title"
-            required
-            placeholder="Enter blog title"
-          ></b-form-input>
-        </b-form-group>
+      <b-overlay :show="loading" rounded="sm">
+        <b-form @submit="onSubmit" v-if="show">
+          <b-form-group
+            id="input-group-blog-title"
+            label="博客主题："
+            label-for="input-blog-title"
+          >
+            <b-form-input
+              id="input-blog-title"
+              v-model="newBlog.title"
+              required
+              placeholder="Enter blog title"
+            ></b-form-input>
+          </b-form-group>
 
-        <b-form-group
-          id="input-group-blog-content"
-          label="博客内容："
-          label-for="input-blog-content"
-        >
-          <b-form-textarea
-            id="input-blog-content"
-            v-model="newBlog.content"
-            required
-            placeholder="Enter blog content"
-          ></b-form-textarea>
-        </b-form-group>
+          <b-form-group
+            id="input-group-blog-content"
+            label="博客内容："
+            label-for="input-blog-content"
+          >
+            <b-form-textarea
+              id="input-blog-content"
+              v-model="newBlog.content"
+              required
+              placeholder="Enter blog content"
+            ></b-form-textarea>
+          </b-form-group>
 
-        <b-form-group
-          id="input-group-blog-img"
-          label="博客图片："
-          label-for="input-blog-img"
-        >
-          <b-form-file
-            id="input-blog-img"
-            v-model="imgFile"
-            v-on:input="uploadImg"
-            required
-            placeholder="Choose a img or drop it here..."
-            drop-placeholder="Drop img here..."
-          ></b-form-file>
-          <b-img fluid :src="newBlog.img"></b-img>
-        </b-form-group>
-        <b-button type="submit" variant="primary">发布博客</b-button>
-      </b-form>
+          <b-form-group
+            id="input-group-blog-img"
+            label="博客图片："
+            label-for="input-blog-img"
+          >
+            <b-form-file
+              id="input-blog-img"
+              v-model="imgFile"
+              v-on:input="uploadImg"
+              required
+              placeholder="Choose a img or drop it here..."
+              drop-placeholder="Drop img here..."
+            ></b-form-file>
+            <b-img fluid :src="newBlog.img"></b-img>
+          </b-form-group>
+          <b-button type="submit" variant="primary">发布博客</b-button>
+        </b-form>
+      </b-overlay>
     </b-container>
   </div>
 </template>
@@ -65,11 +67,13 @@ export default {
       },
       imgFile: null,
       show: true,
+      loading: false
     };
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
+      this.loading = true
       var that = this
       Axios.post(process.env.VUE_APP_URL + '/api/blog/add/blog', this.newBlog)
         .then((response) => {
@@ -79,6 +83,7 @@ export default {
               type: 'setBlogFlag',
               flag: true
             })
+            that.loading = false
             location = '/home?userName=' + that.$store.getters.userName
           }
         })
