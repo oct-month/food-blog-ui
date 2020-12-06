@@ -19,7 +19,7 @@
         </b-list-group-item>
         <b-list-group-item class="d-flex align-items-center">
           <p>
-            个性签名
+            世界上最治愈的东西,第一是美食,第二才是文字。
           </p>
         </b-list-group-item>
         <b-list-group-item variant="primary" :to="'/home?userName=' + $store.getters.userName" class="d-flex align-items-center">
@@ -108,6 +108,25 @@
     <b-container fluid id="router-view">
       <router-view />
     </b-container>
+
+    <b-jumbotron>
+      <template #header>BootstrapVue</template>
+
+      <template #lead>
+        This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+        featured content or information.
+      </template>
+
+      <hr class="my-4">
+
+      <p>
+        It uses utility classes for typography and spacing to space content out within the larger
+        container.
+      </p>
+
+      <b-button variant="primary" href="#">Do Something</b-button>
+      <b-button variant="success" href="#">Do Something Else</b-button>
+    </b-jumbotron>
   </div>
 </template>
 
