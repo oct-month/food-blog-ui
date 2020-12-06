@@ -72,19 +72,25 @@ export default {
       var that = this
       Axios.get(process.env.VUE_APP_URL + '/api/blog/blogs')
         .then((response) => {
-          that.$store.commit({
-            type: 'setBlogs',
-            blogs: response.data.blogs
-          })
+          if (response.data.success === true)
+          {
+            that.$store.commit({
+              type: 'setBlogs',
+              blogs: response.data.blogs
+            })
+          }
           // 根据blog.id拿到blog对应的comment
           that.$store.getters.allBlogs.forEach((blog) => {
             Axios.get(process.env.VUE_APP_URL + '/api/comment/comments/' + blog.id)
               .then((res) => {
-                that.$store.commit({
-                  type: 'setComments',
-                  blogId: blog.id,
-                  comments: res.data.comments
-                })
+                if (res.data.success === true)
+                {
+                  that.$store.commit({
+                    type: 'setComments',
+                    blogId: blog.id,
+                    comments: res.data.comments
+                  })
+                }
               })
               .catch(errorHandle)
           });
@@ -98,7 +104,7 @@ export default {
           if (response.data.success === true)
           {
             that.$store.commit({
-              type: 'getLikes',
+              type: 'addLikes',
               blogId: blogId
             })
           }

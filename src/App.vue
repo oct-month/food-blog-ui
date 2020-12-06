@@ -156,10 +156,13 @@ export default {
           {
             Axios.get(process.env.VUE_APP_URL + '/api/login/username')
               .then((response) => {
-                that.$store.commit({
-                  type: 'setUserName',
-                  userName: response.data.userName
-                })
+                if (response.data.success === true)
+                {
+                  that.$store.commit({
+                    type: 'setUserName',
+                    userName: response.data.userName
+                  })
+                }
               })
               .catch(errorHandle)
           }

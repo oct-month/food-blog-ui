@@ -37,7 +37,7 @@ export default new Vuex.Store({
       })
     },
     addComments(state, payload) {   // 增加blog的comments
-      state.blog.forEach((blog) => {
+      state.blogs.forEach((blog) => {
         if (blog.id === payload.blogId)
         {
           payload.comments.forEach((comment) => {
@@ -46,8 +46,8 @@ export default new Vuex.Store({
         }
       })
     },
-    getLikes(state, payload) {    // 点赞
-      state.blog.forEach((blog) => {
+    addLikes(state, payload) {    // 点赞
+      state.blogs.forEach((blog) => {
         if (blog.id === payload.blogId)
         {
           blog.likes ++
