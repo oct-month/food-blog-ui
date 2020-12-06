@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Index from '../views/Index.vue'
 import About from '../views/About.vue'
 import Home from '../views/Home.vue'
+import WriteBlog from '../views/WriteBlog.vue'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,11 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/write',
+    name: 'WriteBlog',
+    component: WriteBlog
   },
   {
     path: '/about',

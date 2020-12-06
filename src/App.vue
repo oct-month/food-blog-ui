@@ -41,7 +41,7 @@
 
     <!-- 导航栏 -->
     <b-navbar toggleable="lg" type="light" variant="info">
-      <b-navbar-brand href="/">美食博客</b-navbar-brand>
+      <b-navbar-brand to="/">美食博客</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
