@@ -33,8 +33,8 @@
                 </b-input-group>
             </b-row>
             <b-row align-v="center" align-h="end">
-              <b-button v-b-toggle.collapse-1 variant="link">查看评论>></b-button>
-              <b-collapse id="collapse-1" class="mt-2">
+              <b-button @click="$root.$emit('bv::toggle::collapse', 'collapse-' + blog.id)" variant="link">查看评论>></b-button>
+              <b-collapse :id="'collapse-' + blog.id" class="mt-2">
                 <b-card>
                   <b-list-group>
                     <b-list-group-item v-for="comment in blog.comments" :key="comment.id">

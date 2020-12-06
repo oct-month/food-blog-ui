@@ -1,6 +1,6 @@
 <template>
-  <div class="write-blog">
-    <b-container fluid>
+  <div class="write-blog row align-items-center justify-content-center">
+    <b-container>
       <b-form @submit="onSubmit" v-if="show">
         <b-form-group
           id="input-group-blog-title"
@@ -75,7 +75,7 @@ export default {
         .then((response) => {
           if (response.data.success === true)
           {
-            location.replace('/home?userName=' + that.$store.getters.userName)
+            location = '/home?userName=' + that.$store.getters.userName
           }
         })
     },
