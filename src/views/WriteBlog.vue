@@ -1,6 +1,6 @@
 <template>
   <div class="write-blog">
-    <b-form @submit="onSubmit" v-if="show" id="blog-form">
+    <b-form @submit="onSubmit" v-if="show" inline>
       <b-form-group
         id="input-group-blog-title"
         label="博客主题："
@@ -82,10 +82,5 @@ export default {
 </script>
 
 <style scoped>
-#blog-form {
-  margin-top: 15px;
-  margin-bottom: 25px;
-  margin-left: 10%;
-  margin-right: 10%;
-}
+
 </style>
