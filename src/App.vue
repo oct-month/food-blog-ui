@@ -25,7 +25,7 @@
         <b-list-group-item variant="primary" :to="'/home?userName=' + $store.getters.userName" class="d-flex align-items-center">
           我的主页
         </b-list-group-item>
-        <b-list-group-item button variant="success" to="/write" class="d-flex align-items-center">
+        <b-list-group-item button variant="success" :to="'/write'" class="d-flex align-items-center">
           + 发布博客
         </b-list-group-item>
       </b-list-group>
