@@ -144,6 +144,10 @@ export default {
     if (this.$store.getters.getBlogFlag === true)
     {
       this.getAllBlogs()
+      this.$store.commit({
+        type: 'setBlogFlag',
+        flag: false
+      })
     }
     this.loading = false
   }
