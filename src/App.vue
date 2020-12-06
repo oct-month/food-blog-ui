@@ -36,7 +36,7 @@
       <div class="d-block text-center">
         <h3>下线成功</h3>
       </div>
-      <b-button class="mt-3" variant="success" block @click="$bvModal.hide('bv-modal-logout'); location='/login';">OK</b-button>
+      <b-button class="mt-3" variant="success" block @click="afterLogout">OK</b-button>
     </b-modal>
 
     <!-- 导航栏 -->
@@ -194,6 +194,10 @@ export default {
           // location = '/login'
         })
         .catch(errorHandle)
+    },
+    afterLogout() {
+      this.$bvModal.hide('bv-modal-logout');
+      location='/login';
     }
   },
   mounted() {
