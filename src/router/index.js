@@ -12,22 +12,34 @@ const routes = [
   {
     path: '/',
     name: 'Index',
-    component: Index
+    component: Index,
+    meta: {
+      title: '美食博客'
+    }
   },
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      title: '我的博客'
+    }
   },
   {
     path: '/write',
     name: 'WriteBlog',
-    component: WriteBlog
+    component: WriteBlog,
+    meta: {
+      title: '写博客'
+    }
   },
   {
     path: '/about',
     name: 'About',
-    component: About
+    component: About,
+    meta: {
+      title: '关于FoodBlog'
+    }
   }
 ]
 

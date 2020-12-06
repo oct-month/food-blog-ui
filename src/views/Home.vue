@@ -159,6 +159,10 @@ export default {
     },
   },
   mounted() {
+    if (this.currentUserName)
+    {
+      document.title = this.currentUserName + '的博客'
+    }
     if (this.$store.getters.getBlogFlag === true)
     {
       this.loading = true
