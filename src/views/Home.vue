@@ -46,7 +46,7 @@
                 <b-input-group-append>
                   <b-button
                     variant="outline-secondary"
-                    v-on:click.once="addComment(blog.id); newComments[blog.id] = '';">
+                    @click="addComment(blog.id); newComments[blog.id] = '';">
                     发表评论
                   </b-button>
                 </b-input-group-append>
@@ -139,18 +139,23 @@ export default {
     addComment(blogId) {
       // 增加评论
       var that = this;
-      Axios.post(process.env.VUE_APP_URL + "/api/comment/add", {
-        content: that.newComments[blogId],
-        blogId: blogId,
-      }).then((response) => {
-        if (response.data.success === true) {
-          that.$store.commit({
-            type: "addComments",
-            blogId: blogId,
-            comments: response.data.comments,
-          });
-        }
-      });
+      if (that.newComments[blogId] != null && that.newComments[blogId].trim() != '')
+      {
+        Axios.post(process.env.VUE_APP_URL + "/api/comment/add", {
+          content: that.newComments[blogId],
+          blogId: blogId
+        })
+        .then((response) => {
+          if (response.data.success === true) {
+            that.$store.commit({
+              type: "addComments",
+              blogId: blogId,
+              comments: response.data.comments
+            })
+          }
+        })
+        .catch(errorHandle)
+      }
     },
   },
   mounted() {
