@@ -22,7 +22,7 @@
             个性签名
           </p>
         </b-list-group-item>
-        <b-list-group-item variant="primary" to="/home" class="d-flex align-items-center">
+        <b-list-group-item variant="primary" :to="'/home?userName=' + $store.getters.userName" class="d-flex align-items-center">
           我的主页
         </b-list-group-item>
         <b-list-group-item button variant="success" href="#" class="d-flex align-items-center">
