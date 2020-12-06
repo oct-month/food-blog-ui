@@ -110,12 +110,11 @@
     </b-container>
 
     <footer class="bd-footer text-muted">
-      <b-jumbotron>
+      <b-jumbotron bg-variant="info" text-variant="dark" style="margin-bottom: 0em;">
         <template #header>美食博客</template>
-        <!-- <template #lead>
-          This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
-          featured content or information.
-        </template> -->
+        <template #lead>
+          Food is everything.
+        </template>
         <hr class="my-4">
         <p>
           任何一种爱，都不比对美食的热爱真切。
