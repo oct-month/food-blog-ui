@@ -86,7 +86,7 @@ export default {
             that.loading = false
             that.$router.push({
               name: 'Home',
-              params: {
+              query: {
                 userName: that.$store.getters.userName
               }
             })
