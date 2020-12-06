@@ -1,51 +1,49 @@
 <template>
   <div class="write-blog">
-    <b-container fluid>
-      <b-form @submit="onSubmit" v-if="show">
-        <b-form-group
-          id="input-group-blog-title"
-          label="博客主题："
-          label-for="input-blog-title"
-        >
-          <b-form-input
-            id="input-blog-title"
-            v-model="newBlog.title"
-            required
-            placeholder="Enter blog title"
-          ></b-form-input>
-        </b-form-group>
+    <b-form @submit="onSubmit" v-if="show" id="blog-form">
+      <b-form-group
+        id="input-group-blog-title"
+        label="博客主题："
+        label-for="input-blog-title"
+      >
+        <b-form-input
+          id="input-blog-title"
+          v-model="newBlog.title"
+          required
+          placeholder="Enter blog title"
+        ></b-form-input>
+      </b-form-group>
 
-        <b-form-group
-          id="input-group-blog-content"
-          label="博客内容："
-          label-for="input-blog-content"
-        >
-          <b-form-textarea
-            id="input-blog-content"
-            v-model="newBlog.content"
-            required
-            placeholder="Enter blog content"
-          ></b-form-textarea>
-        </b-form-group>
+      <b-form-group
+        id="input-group-blog-content"
+        label="博客内容："
+        label-for="input-blog-content"
+      >
+        <b-form-textarea
+          id="input-blog-content"
+          v-model="newBlog.content"
+          required
+          placeholder="Enter blog content"
+        ></b-form-textarea>
+      </b-form-group>
 
-        <b-form-group
-          id="input-group-blog-img"
-          label="博客图片："
-          label-for="input-blog-img"
-        >
-          <b-form-file
-            id="input-blog-img"
-            v-model="imgFile"
-            v-on:input="uploadImg"
-            required
-            placeholder="Choose a img or drop it here..."
-            drop-placeholder="Drop img here..."
-          ></b-form-file>
-          <b-img-lazy :src="newBlog.img"></b-img-lazy>
-        </b-form-group>
-        <b-button type="submit" variant="primary">Submit</b-button>
-      </b-form>
-    </b-container>
+      <b-form-group
+        id="input-group-blog-img"
+        label="博客图片："
+        label-for="input-blog-img"
+      >
+        <b-form-file
+          id="input-blog-img"
+          v-model="imgFile"
+          v-on:input="uploadImg"
+          required
+          placeholder="Choose a img or drop it here..."
+          drop-placeholder="Drop img here..."
+        ></b-form-file>
+        <b-img-lazy :src="newBlog.img"></b-img-lazy>
+      </b-form-group>
+      <b-button type="submit" variant="primary">Submit</b-button>
+    </b-form>
   </div>
 </template>
 
@@ -84,4 +82,10 @@ export default {
 </script>
 
 <style scoped>
+#blog-form {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
 </style>
