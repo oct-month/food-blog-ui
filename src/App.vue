@@ -32,12 +32,12 @@
     </b-sidebar>
 
     <!-- log out 的提示框 -->
-    <div>
-      <b-modal id="modal-logout" title="BootstrapVue">
-        <p class="my-4">下线成功</p>
-        <b-button class="mt-3" block v-on:click.once="$bvModal.hide('modal-logout'); location='/login';">OK</b-button>
-      </b-modal>
-    </div>
+    <b-modal id="bv-modal-logout" hide-footer>
+      <div class="d-block text-center">
+        <h3>下线成功</h3>
+      </div>
+      <b-button class="mt-3" variant="success" block @click="$bvModal.hide('bv-modal-logout'); location='/'">OK</b-button>
+    </b-modal>
 
     <!-- 导航栏 -->
     <b-navbar toggleable="lg" type="light" variant="info">
@@ -183,7 +183,7 @@ export default {
         .then((response) => {
           if (response.data.success === 'true')
           {
-            that.$bvModal.show("modal-logout")
+            that.$bvModal.show('bv-modal-logout')
           }
           // location = '/login'
         })
