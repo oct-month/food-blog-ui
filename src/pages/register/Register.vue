@@ -1,10 +1,10 @@
 <template>
   <div id="register">
-    <div>
-      <b-alert :show="registerShow" dismissible variant="danger">用户名已存在</b-alert>
-    </div>
-
     <b-container>
+      <div>
+        <b-alert :show="registerShow" dismissible variant="danger">用户名已存在</b-alert>
+      </div>
+
       <b-img center fluid src="~@/img/register.gif" alt="register"> </b-img>
 
       <b-form @submit="onSubmit" v-if="show">

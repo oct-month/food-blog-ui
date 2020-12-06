@@ -34,7 +34,8 @@
     <!-- log out 的提示框 -->
     <div>
       <b-modal id="modal-logout" title="BootstrapVue">
-        <p class="my-4">Hello from modal!</p>
+        <p class="my-4">下线成功</p>
+        <b-button class="mt-3" block v-on:click.once="$bvModal.hide('modal-logout'); location='/login';">OK</b-button>
       </b-modal>
     </div>
 
@@ -184,7 +185,7 @@ export default {
           {
             that.$bvModal.show("modal-logout")
           }
-          location = '/login'
+          // location = '/login'
         })
         .catch(errorHandle)
     }

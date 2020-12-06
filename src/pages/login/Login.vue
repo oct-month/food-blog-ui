@@ -3,12 +3,12 @@
     id="login"
     class="row align-items-center justify-content-center login-center"
   >
-    <div>
-      <b-alert :show="loginShow.success" dismissible variant="success">登陆成功</b-alert>
-      <b-alert :show="loginShow.fail" dismissible variant="danger">用户名或密码错误</b-alert>
-    </div>
-
     <b-container>
+      <div>
+        <b-alert :show="loginShow.success" dismissible variant="success">登陆成功</b-alert>
+        <b-alert :show="loginShow.fail" dismissible variant="danger">用户名或密码错误</b-alert>
+      </div>
+
       <b-img center fluid src="~@/img/login.gif" alt="login"> </b-img>
 
       <b-form @submit="onSubmit" v-if="show">
