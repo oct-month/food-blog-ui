@@ -22,7 +22,7 @@
             个性签名
           </p>
         </b-list-group-item>
-        <b-list-group-item variant="primary" to="#" class="d-flex align-items-center">
+        <b-list-group-item variant="primary" to="/home" class="d-flex align-items-center">
           我的主页
         </b-list-group-item>
         <b-list-group-item button variant="success" href="#" class="d-flex align-items-center">
@@ -36,7 +36,7 @@
       <div class="d-block text-center">
         <h3>下线成功</h3>
       </div>
-      <b-button class="mt-3" variant="success" block @click="$bvModal.hide('bv-modal-logout'); location='/'">OK</b-button>
+      <b-button class="mt-3" variant="success" block @click="$bvModal.hide('bv-modal-logout'); location='/login'">OK</b-button>
     </b-modal>
 
     <!-- 导航栏 -->
@@ -181,7 +181,7 @@ export default {
       var that = this
       Axios.delete(process.env.VUE_APP_URL + '/api/login/unlogin')
         .then((response) => {
-          if (response.data.success === 'true')
+          if (response.data.success === true)
           {
             that.$bvModal.show('bv-modal-logout')
           }
