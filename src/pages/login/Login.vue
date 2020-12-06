@@ -32,7 +32,11 @@
         </b-form-group>
 
         <b-form-group>
-          <b-button squared block type="submit" variant="outline-primary"
+          <b-button
+            squared
+            block
+            type="submit"
+            variant="outline-primary"
             >登录</b-button
           >
         </b-form-group>
@@ -105,5 +109,7 @@ export default {
 <style scoped>
 #login {
   height: 100vh;
+  margin-left: 0em;
+  margin-right: 0em;
 }
 </style>
