@@ -105,7 +105,7 @@
 
     <hr>
 
-    <b-container fluid style="margin: 15px 10% 25px 10%;">
+    <b-container fluid id="router-view">
       <router-view />
     </b-container>
   </div>
@@ -118,6 +118,13 @@
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #2c3e50;
+}
+
+#router-view {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 #user-bar {
