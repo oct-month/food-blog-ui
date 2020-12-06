@@ -1,6 +1,7 @@
 <template>
   <div class="write-blog">
-    <b-form @submit="onSubmit" v-if="show" style="display: block;">
+    <b-container>
+    <b-form @submit="onSubmit" v-if="show">
       <b-form-group
         id="input-group-blog-title"
         label="博客主题："
@@ -44,6 +45,7 @@
       </b-form-group>
       <b-button type="submit" variant="primary">Submit</b-button>
     </b-form>
+    </b-container>
   </div>
 </template>
 
