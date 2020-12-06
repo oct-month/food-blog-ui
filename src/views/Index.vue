@@ -1,7 +1,7 @@
 <template>
   <div class="index">
 
-    <div class="text-center" v-if="loading">
+    <div class="text-center" v-show="loading">
       <b-spinner label="Spinning"></b-spinner>
       <b-spinner type="grow" label="Spinning"></b-spinner>
       <b-spinner variant="primary" label="Spinning"></b-spinner>

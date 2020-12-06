@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="text-center" v-if="loading">
+    <div class="text-center" v-show="loading">
       <b-spinner label="Spinning"></b-spinner>
       <b-spinner type="grow" label="Spinning"></b-spinner>
       <b-spinner variant="primary" label="Spinning"></b-spinner>
@@ -83,7 +83,7 @@ export default {
     return {
       currentUserName: getUrlparams("userName"),
       newComments: {},
-      loading: false
+      loading: true
     };
   },
   computed: {
