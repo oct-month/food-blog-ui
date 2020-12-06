@@ -26,7 +26,7 @@
             </b-row>
             <b-row align-v="center" align-h="start">
                 <b-input-group class="mt-3">
-                  <b-form-input placeholder="发条友善的评论" v-bind="newComments[blog.id]"></b-form-input>
+                  <b-form-input placeholder="发条友善的评论" v-model="newComments[blog.id]"></b-form-input>
                   <b-input-group-append>
                     <b-button variant="outline-secondary" v-on:click.once="addComment(blog.id)">发表评论</b-button>
                   </b-input-group-append>
