@@ -75,7 +75,7 @@ export default {
   data() {
     return {
       newComments: {},
-      loading: true
+      loading: false
     }
   },
   methods: {
@@ -141,9 +141,9 @@ export default {
     }
   },
   mounted() {
-    this.loading = true
     if (this.$store.getters.getBlogFlag === true)
     {
+      this.loading = true
       this.getAllBlogs()
       this.$store.commit({
         type: 'setBlogFlag',

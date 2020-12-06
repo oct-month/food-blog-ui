@@ -83,7 +83,7 @@ export default {
     return {
       currentUserName: getUrlparams("userName"),
       newComments: {},
-      loading: true
+      loading: false
     };
   },
   computed: {
@@ -154,9 +154,9 @@ export default {
     },
   },
   mounted() {
-    this.loading = true
     if (this.$store.getters.getBlogFlag === true)
     {
+      this.loading = true
       this.getAllBlogs()
       this.$store.commit({
         type: 'setBlogFlag',
