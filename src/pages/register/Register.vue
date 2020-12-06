@@ -1,5 +1,9 @@
 <template>
   <div id="register">
+    <div>
+      <b-alert :show="registerShow" dismissible variant="danger">用户名已存在</b-alert>
+    </div>
+
     <b-container>
       <b-img center fluid src="~@/img/register.gif" alt="register"> </b-img>
 
@@ -70,6 +74,7 @@ export default {
         passWord: "",
         email: "",
       },
+      registerShow: false,
       show: true,
     };
   },
@@ -80,13 +85,21 @@ export default {
       Axios.post(process.env.VUE_APP_URL + "/api/login/register", this.form)
         .then((response) => {
           if (response.data.success === true)
+          {
+            that.registerShow = false
             location = '/login?userName=' + that.form.userName
+          }
+          else
+          {
+            that.registerShow = true
+          }
         })
         .catch(errorHandle);
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
+
 </style>

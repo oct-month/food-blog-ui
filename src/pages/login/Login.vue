@@ -3,6 +3,11 @@
     id="login"
     class="row align-items-center justify-content-center login-center"
   >
+    <div>
+      <b-alert :show="loginShow.success" dismissible variant="success">登陆成功</b-alert>
+      <b-alert :show="loginShow.fail" dismissible variant="danger">用户名或密码错误</b-alert>
+    </div>
+
     <b-container>
       <b-img center fluid src="~@/img/login.gif" alt="login"> </b-img>
 
@@ -63,6 +68,10 @@ export default {
         userName: "",
         passWord: "",
       },
+      loginShow: {
+        success: false,
+        fail: false
+      },
       show: true,
     };
   },
@@ -73,7 +82,16 @@ export default {
       Axios.post(process.env.VUE_APP_URL + "/api/login/dologin", this.form)
         .then((response) => {
           if (response.data.success === true)
+          {
+            that.loginShow.success = true
+            that.loginShow.fail = false
             location = '/'
+          }
+          else
+          {
+            that.loginShow.success = false
+            that.loginShow.fail = true
+          }
         })
         .catch(errorHandle);
     },

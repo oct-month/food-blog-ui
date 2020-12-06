@@ -31,6 +31,13 @@
       </b-list-group>
     </b-sidebar>
 
+    <!-- log out 的提示框 -->
+    <div>
+      <b-modal id="modal-logout" title="BootstrapVue">
+        <p class="my-4">Hello from modal!</p>
+      </b-modal>
+    </div>
+
     <!-- 导航栏 -->
     <b-navbar toggleable="lg" type="light" variant="info">
       <b-navbar-brand href="/">美食博客</b-navbar-brand>
@@ -51,7 +58,7 @@
               <em>{{ $store.getters.userName }}</em>
             </template>
             <b-dropdown-item v-b-toggle.user-bar>Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Log Out</b-dropdown-item>
+            <b-dropdown-item href="#" v-on:click.once="doLogOut">Log Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -95,10 +102,6 @@
       </b-container>
     </div>
 
-    <!-- <b-nav id="nav">
-      <b-link to="/">Home</b-link>
-      <b-link to="/about">About</b-link>
-    </b-nav> -->
     <hr>
 
     <b-container fluid style="margin: 15px 10% 25px 10%;">
@@ -170,6 +173,18 @@ export default {
           {
             location = '/login'
           }
+        })
+        .catch(errorHandle)
+    },
+    doLogOut() {
+      var that = this
+      Axios.delete(process.env.VUE_APP_URL + '/api/login/unlogin')
+        .then((response) => {
+          if (response.data.success === 'true')
+          {
+            that.$bvModal.show("modal-logout")
+          }
+          location = '/login'
         })
         .catch(errorHandle)
     }
