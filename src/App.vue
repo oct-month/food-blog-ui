@@ -49,7 +49,7 @@
         <b-navbar-nav>
           <b-nav-item href="#" disabled>Food is everything.</b-nav-item>
           <b-nav-form>
-            <b-button size="sm" class="my-2 my-sm-0" variant="success" pill href="#">我也要发布博客</b-button>
+            <b-button size="sm" class="my-2 my-sm-0" variant="success" pill to="/write">我也要发布博客</b-button>
           </b-nav-form>
         </b-navbar-nav>
 
