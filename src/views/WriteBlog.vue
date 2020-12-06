@@ -1,6 +1,6 @@
 <template>
   <div class="write-blog">
-    <b-form @submit="onSubmit" v-if="show" inline>
+    <b-form @submit="onSubmit" v-if="show" style="display: block;">
       <b-form-group
         id="input-group-blog-title"
         label="博客主题："

@@ -125,6 +125,7 @@
   margin-bottom: 25px;
   margin-left: 10%;
   margin-right: 10%;
+  display: block;
 }
 
 #user-bar {
