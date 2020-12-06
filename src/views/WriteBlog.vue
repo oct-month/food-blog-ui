@@ -41,7 +41,7 @@
             placeholder="Choose a img or drop it here..."
             drop-placeholder="Drop img here..."
           ></b-form-file>
-          <b-img-lazy :src="newBlog.img"></b-img-lazy>
+          <b-img fluid :src="newBlog.img"></b-img>
         </b-form-group>
         <b-button type="submit" variant="primary">发布博客</b-button>
       </b-form>

@@ -121,10 +121,9 @@
 }
 
 #router-view {
-  margin-top: 15px;
+  margin-top: 25px;
   margin-bottom: 25px;
-  margin-left: 10%;
-  margin-right: 10%;
+  width: 80%;
 }
 
 #user-bar {
